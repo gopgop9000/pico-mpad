@@ -1,12 +1,14 @@
 import time
 import board
 import digitalio
-import usb_hid
-import key_mapping as km
+import usb_hid 
+import base_key_mapping as km
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 from adafruit_hid.consumer_control import ConsumerControl
 
+# Config variables | Will be editable by GUI once I get that going
+macro_delay = 0.05
 
 def send_keys(button_number):
     try:
@@ -19,6 +21,13 @@ def send_keys(button_number):
                 keyboard.press(*key[1])
             elif key[0] == km.CONTROL_CODE:
                 cc.press(key[1])
+            elif key[0] == km.MACRO:
+                iterkey = iter(key[1])
+                for i in iterkey:
+                    keyboard.press(i)
+                    time.sleep(macro_delay)
+                    keyboard.release(i)
+                    time.sleep(macro_delay)
         else:
             if key[0] == km.KEY:
                 keyboard.release(*key[1])
@@ -28,8 +37,8 @@ def send_keys(button_number):
         pass
 
 
-activator_pins = [board.GP21, board.GP20, board.GP19]
-receiver_pins = [board.GP6, board.GP7, board.GP8, board.GP9]
+activator_pins = [board.GP28, board.GP27, board.GP22]
+receiver_pins = [board.GP12, board.GP10, board.GP8, board.GP6]
 
 receivers = []
 for pin in receiver_pins:
@@ -66,4 +75,3 @@ while True:
             send_keys(button_i)
             history[button_i] = buttons[button_i]
     time.sleep(0.01)
-
