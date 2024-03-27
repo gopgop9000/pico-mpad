@@ -1,3 +1,4 @@
+# Note: GUI has not been made yet, I didn't know I couldn't make a forked repository private before I forked it, but I am using the base code so I will leave it as is for now, with the tweak to make macros work a bit better.
 # Pico Mpad
 
 A 3D printable macropad for automating frequently repeated actions.
