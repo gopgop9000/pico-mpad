@@ -3,6 +3,8 @@ from adafruit_hid.consumer_control_code import ConsumerControlCode as cc
 
 # KEY presses all keys in order, then releases them all once it reaches the end of the list.
 # MACRO presses then releases each key before moving to the next key in the list. 
+# You can place a number between each key and it will delay the specified amount of seconds until the next key
+# If there isn't a number between keys it will use the default delay in code.py
 
 STRING = 1
 KEY = 2

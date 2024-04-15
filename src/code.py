@@ -6,9 +6,12 @@ import base_key_mapping as km
 from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
 from adafruit_hid.consumer_control import ConsumerControl
-
-# Config variables | Will be editable by GUI once I get that going
+from adafruit_hid.mouse import Mouse
+ 
+# Config variables
 macro_delay = 0.05
+
+print("Loaded!")
 
 def send_keys(button_number):
     try:
@@ -22,12 +25,17 @@ def send_keys(button_number):
             elif key[0] == km.CONTROL_CODE:
                 cc.press(key[1])
             elif key[0] == km.MACRO:
+                custom_delay = False
                 iterkey = iter(key[1])
                 for i in iterkey:
-                    keyboard.press(i)
-                    time.sleep(macro_delay)
-                    keyboard.release(i)
-                    time.sleep(macro_delay)
+                    custom_delay = False
+                    if type(i) is list:
+                        keyboard.send(*i)
+                    elif type(i) is int or float:
+                        custom_delay = True
+                        time.sleep(i)
+                    if custom_delay == False:
+                        time.sleep(macro_delay)
         else:
             if key[0] == km.KEY:
                 keyboard.release(*key[1])
