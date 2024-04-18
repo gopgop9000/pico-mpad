@@ -1,4 +1,8 @@
-# Note: GUI has not been made yet, I didn't know I couldn't make a forked repository private before I forked it, but I am using the base code so I will leave it as is for now, with the tweak to make macros work a bit better.
+~~Note: GUI has not been made yet, I didn't know I couldn't make a forked repository private before I forked it, but I am using the base code so I will leave it as is for now, with the tweak to make macros work a bit better.~~
+
+Edit: Reverted the name it until I get the GUI working, as the design process is taking longer than expected. This does still include support for proper macros, and I hope to be able to add mouse button support in macros eventually™
+
+Descriptions of how the new macro functions work is included in the base_key_mapping.py file. It's hard to make a good example for them without it being game specific, as that's my use for them, so they aren't shown well. 
 # Pico Mpad
 
 A 3D printable macropad for automating frequently repeated actions.

@@ -5,6 +5,7 @@ from adafruit_hid.consumer_control_code import ConsumerControlCode as cc
 # MACRO presses then releases each key before moving to the next key in the list. 
 # You can place a number between each key and it will delay the specified amount of seconds until the next key
 # If there isn't a number between keys it will use the default delay in code.py
+# If you want a multi-key keystroke in a macro, you would format it with another set of [] like: (MACRO, [kc.HOME, [kc.SHIFT, kc.ENTER], kc.TAB]),
 
 STRING = 1
 KEY = 2
@@ -19,7 +20,7 @@ keys = [
     # ROW 1, COLUMN 3 | New line after current line
     (MACRO, [kc.END, kc.ENTER, kc.TAB]),
     # ROW 1, COLUMN 4
-    (KEY, [kc.ALT, kc.TAB]),
+    (KEY, [(kc.SHIFT, kc.A), kc.A]),
     # ROW 2, COLUMN 1 
     (CONTROL_CODE, cc.VOLUME_DECREMENT),
     # ROW 2, COLUMN 2
